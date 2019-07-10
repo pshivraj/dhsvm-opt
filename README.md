@@ -37,7 +37,7 @@ algorithm [DFREAM](http://faculty.sites.uci.edu/jasper/files/2016/04/70.pdf) imp
 
 ### Literature
 
-1. [DFREAM - an adaptive Markov Chain Monte Carlo simulation algorithm to solve discrete, noncontinuous, and combinatorial
+1. [DREAM - an adaptive Markov Chain Monte Carlo simulation algorithm to solve discrete, noncontinuous, and combinatorial
 posterior parameter estimation problems ](http://faculty.sites.uci.edu/jasper/files/2016/04/70.pdf)
 
 ### Implementations
