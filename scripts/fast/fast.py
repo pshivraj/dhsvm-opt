@@ -97,3 +97,38 @@ def change_setting(config_file, setting_name, new_value, occurrence_loc='g'):
                              , config_file = config_file
                              , occurrence_loc = occurrence_loc)
     return subprocess.call(sed_cmd, shell=True)
+
+def plot_results(results, threshold=0.2):
+    names = []
+    values = []
+    no_names = []
+    no_values = []
+    index = []
+    no_index = []
+
+    parnames = spotpy.analyser.get_parameternames(results)
+    sensitivity_data = spotpy.analyser.get_sensitivity_of_fast(results,M=4)
+    sensitivity_data = list(sensitivity_data.values())[1]
+    
+    with open('sensitivity_data_run_pnnlOct2005toSep2007.txt', 'w') as f:
+        f.writelines([str(pname) + ", " + str(s) + "\n" for (pname, s) in zip(parnames, sensitivity_data)])
+
+    for j in range(len(sensitivity_data)):
+        if sensitivity_data[j] > threshold:
+            names.append(parnames[j])
+            values.append(sensitivity_data[j])
+            index.append(j)
+        else:
+            no_names.append(parnames[j])
+            no_values.append(sensitivity_data[j])
+            no_index.append(j)
+
+    fig = plt.figure(figsize=(16,6))
+    ax = plt.subplot(1,1,1)
+    ax.bar(index, values, align='center')
+    ax.bar(no_index, no_values, color='orange', label = 'Insensitive parameter')
+
+    ax.plot(np.arange(-1,len(parnames)+1,1),[threshold]*(len(parnames)+2),'r--')
+    plt.xticks(list(range(len(sensitivity_data))), parnames,rotation = 15)
+    plt.setp(ax.get_xticklabels(), fontsize=10)
+    fig.savefig('FAST_sensitivity_run_pnnlOct2005toSep2007.png',dpi=300)
