@@ -132,3 +132,20 @@ def plot_results(results, threshold=0.2):
     plt.xticks(list(range(len(sensitivity_data))), parnames,rotation = 15)
     plt.setp(ax.get_xticklabels(), fontsize=10)
     fig.savefig('FAST_sensitivity_run_pnnlOct2005toSep2007.png',dpi=300)
+
+if __name__ == '__main__':
+    # Initialize the Dream Class
+    fast_run = fast_run_setup()
+    #Files and their input paths
+    NUM_OF_ITERATIONS = 1284
+    DB_NAME = 'fast_dhsvm_pnnlOct2005toSep2007'
+    CONFIG_FILE = 'Input.sauk.dynG.pnnl.Oct2005toSep2007'
+    STREAMFLOW_ONLY = 'output/PNNLWRF/Streamflow.Only'
+    VALIDATION_CSV = 'validation_1hr_Oct2005toSep2007.csv'
+    DHSVM_CMD = '/home/ubuntu/DHSVM-PNNL/DHSVM/sourcecode/DHSVM3.1.3 ' + CONFIG_FILE 
+    DIR_PREFIX = "dhsvm_run_pnnl_data_pid_"
+
+    sampler=spotpy.algorithms.fast(fast_run, dbname= DB_NAME, dbformat='sql', parallel='mpc')
+    sampler.sample(NUM_OF_ITERATIONS)
+    results = sampler.getdata()
+    plot_results(results)
