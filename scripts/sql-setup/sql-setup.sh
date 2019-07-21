@@ -1,11 +1,14 @@
 #!/bin/bash
-wget http://www.sqlite.org/sqlite-autoconf-3070603.tar.gz &&
-tar xvfz sqlite-autoconf-3070603.tar.gz &&
-cd sqlite-autoconf-3070603 &&
-sudo apt-get install build-essential &&
+wget https://www.sqlite.org/src/tarball/sqlite.tar.gz &&
+tar xzf sqlite.tar.gz &&
+cd sqlite/ &&
 ./configure &&
-sed -i -e '/DEFS =/s/.*/& -DSQLITE_MAX_COLUMN=32767/' Makefile &&
-make &&
-sudo make install &&
+make sqlite3.c &&
+sed -i 's/\(# define SQLITE_MAX_COLUMN \)\(.*\)/\132000/' sqlite3.c
+git clone https://github.com/coleifer/pysqlite3 &&
+cd pysqlite3 &&
+cp ../sqlite3.[ch] . &&
+python setup.py build_static &&
+python setup.py install
 
 
