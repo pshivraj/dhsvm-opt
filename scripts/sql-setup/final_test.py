@@ -3,7 +3,7 @@
 Script to test sqlite max column is more than 2000.
 '''
 
-import sqlite3
+from pysqlite3 import dbapi2 as sqlite3
 conn = sqlite3.connect('example1.db')
 c = conn.cursor()
 c.execute('''CREATE TABLE mytable
