@@ -5,5 +5,5 @@ bash ~/miniconda.sh -b -u &&
 echo 'export PATH=~/miniconda3/bin:$PATH' >> ~/.bashrc &&
 source ~/.bashrc
 cd scripts/sql-setup && bash sql-setup.sh && cd ../..
-conda create -n dhsvm-opt python=3.6 -y &&
+conda create -n dhsvm-opt &&
 conda activate dhsvm-opt
