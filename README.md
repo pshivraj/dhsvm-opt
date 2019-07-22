@@ -12,6 +12,7 @@
 1. [Introduction](#introduction)
 1. [Directory Structure](#directory-structure)
 1. [References](#references)
+1. [Setup](#setup)
 
 
 ## Introduction
@@ -32,6 +33,19 @@ algorithm [DFREAM](http://faculty.sites.uci.edu/jasper/files/2016/04/70.pdf) imp
     ├── sql-setup
 
 ```
+
+## Setup
+
+Run setup file to get the custom sql version installed to handle ```30,000 columns```. 
+Running below sets of command would setup a conda environment ```dhsvm-opt``` with custom sqlite version.
+
+```
+bash -i setup.sh
+source ~/.bashrc
+conda activate dhsvm-opt
+```
+
+
 
 ## References
 
