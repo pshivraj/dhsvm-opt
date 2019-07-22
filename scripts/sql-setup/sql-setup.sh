@@ -1,7 +1,7 @@
 #!/bin/bash
 wget https://www.sqlite.org/src/tarball/sqlite.tar.gz &&
 sudo apt-get update
-sudo apt-get install tclsh
+sudo apt-get install tclsh -y
 sudo apt-get install build-essential -y
 tar xzf sqlite.tar.gz &&
 cd sqlite/ &&
