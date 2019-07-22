@@ -7,5 +7,5 @@ source ~/.bashrc
 cd scripts/sql-setup && bash sql-setup.sh && cd ../..
 conda init bash
 source ~/.bashrc
-conda create -n dhsvm-opt &&
+conda create -n dhsvm-opt -y &&
 conda activate dhsvm-opt
