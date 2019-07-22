@@ -1,15 +1,11 @@
 #!/bin/bash
   
-wget https://www.sqlite.org/src/tarball/sqlite.tar.gz &&
-sudo apt-get update
-sudo apt-get install build-essential -y
-tar xzf sqlite.tar.gz &&
-cd sqlite/ &&
-./configure &&
-make sqlite3.c &&
-sed -i 's/\(# define SQLITE_MAX_COLUMN \)\(.*\)/\132000/' sqlite3.c
-git clone https://github.com/coleifer/pysqlite3 &&
-cd pysqlite3 &&
-cp ../sqlite3.[ch] . &&
-python setup.py build_static &&
-python setup.py install
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+bash ~/miniconda.sh -b -u &&
+echo 'export PATH=~/miniconda3/bin:$PATH' >> ~/.bashrc &&
+source ~/.bashrc
+conda init bash
+conda create -n dhsvm-opt python=3.6 -y &&
+conda activate dhsvm-opt
+cd scripts/sql-setup &&
+bash sql-setup.sh && cd ../..
