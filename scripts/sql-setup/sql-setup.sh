@@ -7,7 +7,8 @@ tar xzf sqlite.tar.gz &&
 cd sqlite/ &&
 ./configure &&
 make sqlite3.c &&
-sed -i 's/\(# define SQLITE_MAX_COLUMN \)\(.*\)/\132000/' sqlite3.c
+sed -i 's/\(# define SQLITE_MAX_COLUMN \)\(.*\)/\132000/' sqlite3.c &&
+rm -rf pysqlite3 &&
 git clone https://github.com/coleifer/pysqlite3 &&
 cd pysqlite3 &&
 cp ../sqlite3.[ch] . &&
