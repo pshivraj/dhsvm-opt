@@ -1,4 +1,9 @@
 #!/bin/bash
+
+set -e
+trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
+
 wget https://www.sqlite.org/src/tarball/sqlite.tar.gz &&
 sudo apt-get update
 sudo apt-get install tclsh -y
